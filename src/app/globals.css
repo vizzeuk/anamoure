@@ -1,26 +1,67 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-base: #EEE4D0;
+  --color-primary: #1A1A1A;
+  --color-accent: #661028;
+  --color-accent-muted: #4A0B1A;
+  --color-cream: #F5EDD8;
+  --color-cream-dark: #E5D8C0;
+  --color-brand: #661028;
+
+  --font-heading: var(--font-recoleta);
+  --font-sans: var(--font-recoleta);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #EEE4D0;
+  color: #1A1A1A;
+  font-family: var(--font-recoleta), Georgia, serif;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F5F2ED;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #661028;
+  border-radius: 3px;
+}
+
+::selection {
+  background-color: #661028;
+  color: #EEE4D0;
+}
+
+.img-placeholder-1 {
+  background: linear-gradient(135deg, #661028 0%, #4A0B1A 50%, #1A1A1A 100%);
+}
+
+.img-placeholder-2 {
+  background: linear-gradient(225deg, #EEE4D0 0%, #661028 50%, #1A1A1A 100%);
+}
+
+.img-placeholder-3 {
+  background: linear-gradient(180deg, #EEE4D0 0%, #661028 40%, #1A1A1A 100%);
+}
+
+.img-placeholder-4 {
+  background: linear-gradient(315deg, #1A1A1A 0%, #661028 50%, #EEE4D0 100%);
+}
+
+.img-placeholder-5 {
+  background: linear-gradient(160deg, #1A1A1A 0%, #661028 50%, #EEE4D0 100%);
+}
+
+.img-placeholder-hero {
+  background: linear-gradient(170deg, #4A0B1A 0%, #661028 50%, #EEE4D0 100%);
 }
