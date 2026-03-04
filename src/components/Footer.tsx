@@ -43,7 +43,7 @@ export default function Footer() {
               ANAMOURE
             </span>
             <p className="mt-4 max-w-xs font-sans text-xs font-light leading-relaxed tracking-wide text-[#EEE4D0]/60">
-              Repostería & Coctelería de Autor. Creando momentos
+              Repostería & Banqueteria. Creando momentos
               extraordinarios desde el primer bocado hasta el último sorbo.
             </p>
           </motion.div>

@@ -51,7 +51,7 @@ export default function Bestsellers() {
           <h2 className="font-heading text-4xl font-bold leading-tight [letter-spacing:-0.02em] text-[#661028] md:text-5xl lg:text-6xl">
             Amado por los clientes
           </h2>
-          <p className="mt-4 font-sans text-sm font-light tracking-wide text-primary/40">
+          <p className="mt-4 font-sans text-sm font-light tracking-wide text-[#661028]/60">
             Los favoritos que siempre vuelven a pedir
           </p>
         </motion.div>
@@ -68,32 +68,23 @@ export default function Bestsellers() {
               className="group flex flex-col"
             >
               {/* Card */}
-              <div className="relative overflow-hidden rounded-2xl">
+              <div className="relative overflow-hidden rounded-3xl">
                 <div
-                  className={`relative aspect-square w-full bg-gradient-to-br ${product.gradient} transition-transform duration-500 ease-out group-hover:scale-[1.03]`}
+                  className="relative aspect-square w-full bg-[#661028] transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                 >
                   {/* Decorative inner border */}
-                  <div className="pointer-events-none absolute inset-2 rounded-xl border border-[#EEE4D0]/10" />
-
-                  {/* Tag — top left */}
-                  <span className="absolute left-4 top-4 inline-block rounded-full border border-[#EEE4D0]/25 px-3 py-1 font-sans text-[9px] font-medium tracking-[0.2em] uppercase text-[#EEE4D0]/70">
-                    {product.tag}
-                  </span>
-
-                  {/* Description on hover — bottom */}
-                  <div className="absolute inset-x-0 bottom-0 translate-y-full p-4 transition-transform duration-400 ease-out group-hover:translate-y-0">
-                    <p className="font-sans text-xs font-light leading-relaxed text-[#EEE4D0]/80">
-                      {product.description}
-                    </p>
-                  </div>
+                  <div className="pointer-events-none absolute inset-2 rounded-2xl border border-[#EEE4D0]/10" />
                 </div>
               </div>
 
-              {/* Name outside card, bottom left */}
+              {/* Name + description below card */}
               <div className="mt-3 pl-1">
                 <h3 className="font-heading text-base font-bold leading-snug text-[#661028] md:text-lg">
                   {product.name}
                 </h3>
+                <p className="mt-1 font-sans text-xs font-light leading-relaxed text-[#661028]/60">
+                  {product.description}
+                </p>
               </div>
             </motion.div>
           ))}

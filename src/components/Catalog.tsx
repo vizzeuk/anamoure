@@ -76,14 +76,14 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 
         {/* Hover content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-          <p className="mb-4 max-w-[240px] text-center font-sans text-xs font-normal leading-relaxed tracking-wide text-base/80">
+          <p className="mb-4 max-w-[240px] text-center font-sans text-xs font-normal leading-relaxed tracking-wide text-[#EEE4D0]/80">
             {product.description}
           </p>
           <a
             href="https://wa.me/TUNUMERO?text=Hola%20ANAMOURE%2C%20quiero%20cotizar"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 border border-brand px-5 py-2.5 font-sans text-[10px] font-medium tracking-[0.2em] uppercase text-base transition-colors duration-300 hover:bg-brand hover:text-[#EEE4D0]"
+            className="inline-flex items-center gap-2 border border-brand px-5 py-2.5 font-sans text-[10px] font-medium tracking-[0.2em] uppercase text-[#EEE4D0] transition-colors duration-300 hover:bg-brand hover:text-[#EEE4D0]"
           >
             <MessageCircle className="h-3 w-3" />
             Cotizar en WhatsApp
@@ -92,7 +92,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 
         {/* Category badge */}
         <div className="absolute left-4 top-4">
-          <span className="font-sans text-[9px] font-medium tracking-[0.25em] uppercase text-base/60">
+          <span className="font-sans text-[9px] font-medium tracking-[0.25em] uppercase text-[#EEE4D0]/60">
             {product.category}
           </span>
         </div>
@@ -122,7 +122,7 @@ export default function Catalog() {
     <section
       ref={sectionRef}
       id="catalogo"
-      className="relative overflow-hidden bg-base px-6 py-32 lg:px-12 lg:py-48"
+      className="relative overflow-hidden bg-[#EEE4D0] px-6 py-32 lg:px-12 lg:py-48"
     >
       {/* Section header */}
       <div className="mx-auto max-w-[1440px]">
