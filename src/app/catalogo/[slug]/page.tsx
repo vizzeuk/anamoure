@@ -2,9 +2,10 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { PortableText } from "@portabletext/react";
-import { MessageCircle, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import AddToCartDetail from "@/components/AddToCartDetail";
 import { client, isCmsConfigured } from "@/sanity/client";
 import { productBySlugQuery, allSlugsQuery } from "@/sanity/queries";
 import { urlFor } from "@/sanity/lib/image";
@@ -49,72 +50,107 @@ export default async function ProductPage({ params }: Props) {
   if (!product) notFound();
 
   const imageUrl = product.image
-    ? urlFor(product.image).width(1200).height(900).url()
+    ? urlFor(product.image).width(900).height(900).url()
     : null;
   const gradient = product.gradient ?? "from-[#661028] to-[#3D0A17]";
-  const whatsappMsg = encodeURIComponent(
-    `Hola ANAMOURE, quiero cotizar: ${product.name}`
-  );
 
   return (
     <>
       <Navbar />
       <main className="min-h-screen bg-[#F0E8D8]">
 
-        {/* Hero */}
-        <div
-          className={`relative min-h-[65vh] overflow-hidden ${
-            imageUrl ? "bg-[#1a0a12]" : `bg-gradient-to-br ${gradient}`
-          }`}
-        >
-          {imageUrl && (
-            <Image
-              src={imageUrl}
-              alt={product.name}
-              fill
-              className="object-cover opacity-60"
-              priority
-            />
-          )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+        {/* Back link */}
+        <div className="mx-auto max-w-[1100px] px-6 pb-0 pt-28 lg:px-12">
+          <Link
+            href="/catalogo"
+            className="inline-flex items-center gap-2 font-sans text-xs font-medium tracking-[0.2em] uppercase text-[#661028]/40 transition-colors hover:text-[#661028]"
+          >
+            <ArrowLeft className="h-3 w-3" />
+            Catálogo
+          </Link>
+        </div>
 
-          <div className="relative z-10 flex h-full min-h-[65vh] flex-col justify-end px-6 pb-16 pt-40 lg:px-12 lg:pb-24">
-            <div className="mx-auto w-full max-w-[900px]">
-              <Link
-                href="/catalogo"
-                className="mb-8 inline-flex items-center gap-2 font-sans text-[10px] font-medium tracking-[0.25em] uppercase text-[#EEE4D0]/50 transition-colors hover:text-[#EEE4D0]"
-              >
-                <ArrowLeft className="h-3 w-3" />
-                Catálogo
-              </Link>
+        {/* Product layout: square image left, info right */}
+        <div className="mx-auto max-w-[1100px] px-6 py-10 lg:px-12 lg:py-16">
+          <div className="grid items-start gap-10 md:grid-cols-2 lg:gap-16">
 
+            {/* Square image */}
+            <div
+              className={`relative aspect-square w-full overflow-hidden rounded-3xl ${
+                imageUrl ? "bg-[#1a0a12]" : `bg-gradient-to-br ${gradient}`
+              }`}
+            >
+              {imageUrl ? (
+                <Image
+                  src={imageUrl}
+                  alt={product.name}
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              ) : (
+                <div className="absolute inset-4 rounded-2xl border border-[#EEE4D0]/10" />
+              )}
+            </div>
+
+            {/* Info */}
+            <div className="flex flex-col">
               {product.tag && (
-                <span className="mb-4 inline-block rounded-full border border-[#EEE4D0]/25 px-3 py-1 font-sans text-[9px] font-medium tracking-[0.2em] uppercase text-[#EEE4D0]/70">
+                <span className="mb-4 inline-block self-start rounded-full border border-[#661028]/20 px-3 py-1 font-sans text-[10px] font-medium tracking-[0.2em] uppercase text-[#661028]/50">
                   {product.tag}
                 </span>
               )}
-              <h1 className="font-heading text-4xl font-bold leading-tight text-[#EEE4D0] [letter-spacing:-0.02em] md:text-6xl lg:text-7xl">
+              <h1 className="font-heading text-3xl font-bold leading-tight text-[#661028] [letter-spacing:-0.02em] md:text-4xl lg:text-5xl">
                 {product.name}
               </h1>
-              <p className="mt-1 font-sans text-xs font-light tracking-[0.2em] uppercase text-[#EEE4D0]/50">
-                {product.category}
-              </p>
+              {product.category && (
+                <p className="mt-2 font-sans text-xs font-light tracking-[0.2em] uppercase text-[#661028]/40">
+                  {product.category}
+                </p>
+              )}
               {product.shortDescription && (
-                <p className="mt-5 max-w-xl font-sans text-sm font-light leading-relaxed text-[#EEE4D0]/70">
+                <p className="mt-6 font-sans text-sm leading-relaxed text-[#661028]/65">
                   {product.shortDescription}
                 </p>
               )}
+
+              {/* Selector de tamaño + botón añadir al carrito */}
+              <div className="mt-8">
+                <AddToCartDetail
+                  id={product._id}
+                  slug={product.slug.current}
+                  name={product.name}
+                  category={product.category}
+                  sizes={product.sizes}
+                />
+              </div>
+
+              {/* Cotizar directamente (secundario) */}
+              <p className="mt-4 text-center font-sans text-xs font-light text-[#661028]/35">
+                ¿Necesitas algo especial?{" "}
+                <a
+                  href={`https://wa.me/56941564398?text=${encodeURIComponent(`Hola Anamoure, quiero consultar sobre: ${product.name}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline underline-offset-2 transition-colors hover:text-[#661028]/60"
+                >
+                  Escríbenos directamente
+                </a>
+              </p>
             </div>
           </div>
         </div>
 
-        {/* Content */}
-        <div className="mx-auto max-w-[900px] px-6 py-16 lg:px-12 lg:py-24">
+        {/* Content adicional abajo */}
+        <div className="mx-auto max-w-[1100px] px-6 pb-20 lg:px-12 lg:pb-28">
+
+          {/* Divisor */}
+          <div className="mb-12 h-px w-full bg-[#661028]/10" />
 
           {/* Descripción completa */}
           {product.longDescription && (
-            <section className="mb-16">
-              <h2 className="mb-6 font-sans text-[10px] font-medium tracking-[0.3em] uppercase text-[#661028]/40">
+            <section className="mb-14">
+              <h2 className="mb-6 font-sans text-xs font-medium tracking-[0.25em] uppercase text-[#661028]/40">
                 Descripción
               </h2>
               <div className="prose prose-sm max-w-none font-sans text-[#661028]/80 [&>p]:mb-4 [&>p]:leading-relaxed">
@@ -127,7 +163,7 @@ export default async function ProductPage({ params }: Props) {
             {/* Sabores */}
             {product.flavors && product.flavors.length > 0 && (
               <section>
-                <h2 className="mb-6 font-sans text-[10px] font-medium tracking-[0.3em] uppercase text-[#661028]/40">
+                <h2 className="mb-6 font-sans text-xs font-medium tracking-[0.25em] uppercase text-[#661028]/40">
                   Sabores disponibles
                 </h2>
                 <div className="flex flex-wrap gap-2">
@@ -146,7 +182,7 @@ export default async function ProductPage({ params }: Props) {
             {/* Alérgenos */}
             {product.allergens && product.allergens.length > 0 && (
               <section>
-                <h2 className="mb-6 font-sans text-[10px] font-medium tracking-[0.3em] uppercase text-[#661028]/40">
+                <h2 className="mb-6 font-sans text-xs font-medium tracking-[0.25em] uppercase text-[#661028]/40">
                   Alérgenos
                 </h2>
                 <div className="flex flex-wrap gap-2">
@@ -161,53 +197,6 @@ export default async function ProductPage({ params }: Props) {
                 </div>
               </section>
             )}
-          </div>
-
-          {/* Tamaños */}
-          {product.sizes && product.sizes.length > 0 && (
-            <section className="mt-16">
-              <h2 className="mb-6 font-sans text-[10px] font-medium tracking-[0.3em] uppercase text-[#661028]/40">
-                Tamaños y precios
-              </h2>
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {product.sizes.map((size: import("@/sanity/types").ProductSize) => (
-                  <div
-                    key={size.name}
-                    className="flex flex-col gap-1 rounded-2xl border border-[#661028]/10 bg-white/50 px-5 py-4"
-                  >
-                    <span className="font-heading text-base font-bold text-[#661028]">
-                      {size.name}
-                    </span>
-                    {size.servings && (
-                      <span className="font-sans text-[10px] font-light tracking-wide text-[#661028]/40">
-                        {size.servings}
-                      </span>
-                    )}
-                    {size.price > 0 && (
-                      <span className="mt-2 font-sans text-sm font-medium text-[#661028]">
-                        ${size.price.toLocaleString("es-CL")}
-                      </span>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </section>
-          )}
-
-          {/* CTA WhatsApp */}
-          <div className="mt-20 flex flex-col items-center gap-4 text-center">
-            <p className="font-sans text-xs font-light tracking-[0.2em] uppercase text-[#661028]/40">
-              ¿Te interesa?
-            </p>
-            <a
-              href={`https://wa.me/TUNUMERO?text=${whatsappMsg}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 rounded-full bg-[#661028] px-8 py-4 font-sans text-xs font-medium tracking-[0.2em] uppercase text-[#EEE4D0] transition-all hover:scale-[1.02] hover:bg-[#4A0B1A]"
-            >
-              <MessageCircle className="h-4 w-4" />
-              Cotizar por WhatsApp
-            </a>
           </div>
 
         </div>

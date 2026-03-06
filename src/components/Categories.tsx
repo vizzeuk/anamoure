@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -11,6 +12,8 @@ const categories = [
     description: "Pasteles de autor para momentos únicos",
     gradient: "from-[#661028] to-[#4A0B1A]",
     href: "/catalogo?categoria=Pastelería",
+    image: "/photos/pasteleria.webp",
+    imageClass: "object-contain p-2 drop-shadow-lg",
     delay: 0,
   },
   {
@@ -18,6 +21,8 @@ const categories = [
     description: "Bocados irresistibles que deleitan el paladar",
     gradient: "from-[#4A0B1A] to-[#2D061A]",
     href: "/catalogo?categoria=Banquetería Dulce",
+    image: "/photos/banqueteria-dulce.png",
+    imageClass: "object-contain scale-[1.35] -translate-x-[3.75%] drop-shadow-lg",
     delay: 0.12,
   },
   {
@@ -25,6 +30,8 @@ const categories = [
     description: "Sofisticados aperitivos de cocina de autor",
     gradient: "from-[#2D061A] to-[#661028]",
     href: "/catalogo?categoria=Banquetería Salada",
+    image: "/photos/banqueteria-salada.png",
+    imageClass: "object-contain p-2 drop-shadow-lg",
     delay: 0.24,
   },
 ];
@@ -68,6 +75,15 @@ export default function Categories() {
                 >
                   <div className="absolute inset-[5px] rounded-full border border-[#EEE4D0]/15 md:inset-3" />
                   <div className="absolute inset-0 rounded-full bg-[#EEE4D0]/0 transition-all duration-500 group-hover:bg-[#EEE4D0]/8" />
+                  {/* Imagen PNG encima del círculo */}
+                  <Image
+                    src={cat.image}
+                    alt={cat.title}
+                    fill
+                    unoptimized
+                    className={cat.imageClass}
+                    sizes="(max-width: 640px) 30vw, (max-width: 768px) 144px, (max-width: 1024px) 208px, 288px"
+                  />
                 </div>
               </Link>
 

@@ -96,19 +96,18 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.2, ease }}
-            className="mt-12 flex flex-wrap items-center justify-center gap-4"
+            className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row"
           >
             <a
               href="/catalogo"
-              className="rounded-full border border-[#EEE4D0]/40 px-8 py-3.5 font-sans text-xs font-medium tracking-[0.15em] uppercase text-[#EEE4D0] transition-all duration-300 hover:bg-[#EEE4D0]/10"
+              className="w-full rounded-full border border-[#EEE4D0]/40 px-8 py-3.5 font-sans text-xs font-medium tracking-[0.15em] uppercase text-[#EEE4D0] transition-all duration-300 hover:bg-[#EEE4D0]/10 sm:w-auto"
             >
               Explorar Menú
             </a>
             <a
-              href="https://wa.me/TUNUMERO?text=Hola%20ANAMOURE%2C%20quiero%20cotizar"
-              target="_blank"
+              href="#contacto"
               rel="noopener noreferrer"
-              className="rounded-full bg-[#EEE4D0] px-8 py-3.5 font-sans text-xs font-semibold tracking-[0.15em] uppercase text-[#661028] transition-all duration-300 hover:bg-[#EEE4D0]/85"
+              className="w-full rounded-full bg-[#EEE4D0] px-8 py-3.5 font-sans text-xs font-semibold tracking-[0.15em] uppercase text-[#661028] transition-all duration-300 hover:bg-[#EEE4D0]/85 sm:w-auto"
             >
               Cotizar
             </a>

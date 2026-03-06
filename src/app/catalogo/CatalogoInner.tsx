@@ -3,11 +3,11 @@
 import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { SlidersHorizontal, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
 import type { ProductSummary } from "@/sanity/types";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -30,7 +30,6 @@ function CatalogoInnerClient({ products }: Props) {
     : "Todos";
 
   const [active, setActive] = useState<Category>(initialCategory);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const filtered =
     active === "Todos" ? products : products.filter((p) => p.category === active);
@@ -85,6 +84,26 @@ function CatalogoInnerClient({ products }: Props) {
         </div>
 
         <div className="mx-auto max-w-[1440px] px-6 py-20 lg:px-12 lg:py-28">
+
+          {/* Filtros mobile — pills, solo visible en mobile */}
+          <div className="mb-8 lg:hidden">
+            <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              {filters.map((f) => (
+                <button
+                  key={f}
+                  onClick={() => setActive(f)}
+                  className={`shrink-0 rounded-full px-4 py-2 font-sans text-xs font-medium tracking-wide transition-all duration-200 ${
+                    active === f
+                      ? "bg-[#661028] text-[#EEE4D0]"
+                      : "border border-[#661028]/20 text-[#661028]/60 hover:border-[#661028]/50 hover:text-[#661028]"
+                  }`}
+                >
+                  {f}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <div className="flex gap-12">
             {/* Sidebar desktop */}
             <aside className="hidden w-56 shrink-0 lg:block">
@@ -116,69 +135,12 @@ function CatalogoInnerClient({ products }: Props) {
               </div>
             </aside>
 
-            {/* Mobile filter button */}
-            <div className="fixed bottom-6 right-6 z-40 lg:hidden">
-              <button
-                onClick={() => setSidebarOpen(true)}
-                className="flex items-center gap-2 rounded-full bg-[#661028] px-5 py-3 font-sans text-xs font-medium tracking-[0.15em] uppercase text-[#EEE4D0] shadow-lg"
-              >
-                <SlidersHorizontal className="h-3.5 w-3.5" />
-                Filtrar
-              </button>
-            </div>
-
-            {/* Mobile sidebar drawer */}
-            <AnimatePresence>
-              {sidebarOpen && (
-                <>
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="fixed inset-0 z-50 bg-black/40 lg:hidden"
-                    onClick={() => setSidebarOpen(false)}
-                  />
-                  <motion.div
-                    initial={{ x: "-100%" }}
-                    animate={{ x: 0 }}
-                    exit={{ x: "-100%" }}
-                    transition={{ duration: 0.35, ease }}
-                    className="fixed inset-y-0 left-0 z-50 w-72 bg-[#F0E8D8] p-8 lg:hidden"
-                  >
-                    <div className="mb-8 flex items-center justify-between">
-                      <p className="font-sans text-[10px] font-medium tracking-[0.3em] uppercase text-[#661028]/40">
-                        Filtrar por
-                      </p>
-                      <button onClick={() => setSidebarOpen(false)}>
-                        <X className="h-4 w-4 text-[#661028]/50" />
-                      </button>
-                    </div>
-                    <nav className="flex flex-col gap-1">
-                      {filters.map((f) => (
-                        <button
-                          key={f}
-                          onClick={() => {
-                            setActive(f);
-                            setSidebarOpen(false);
-                          }}
-                          className={`rounded-xl px-4 py-3 text-left font-sans text-sm font-medium tracking-wide transition-all duration-300 ${
-                            active === f
-                              ? "bg-[#661028] text-[#EEE4D0]"
-                              : "text-[#661028]/60 hover:bg-[#661028]/8 hover:text-[#661028]"
-                          }`}
-                        >
-                          {f}
-                        </button>
-                      ))}
-                    </nav>
-                  </motion.div>
-                </>
-              )}
-            </AnimatePresence>
+            {/* Filtros mobile — pills horizontales */}
+            {/* (renderizados arriba, fuera del flex) */}
 
             {/* Product grid */}
             <div className="flex-1">
-              <div className="mb-8 flex items-center justify-between lg:hidden">
+              <div className="mb-8 hidden items-center justify-between lg:hidden">
                 <p className="font-sans text-xs font-medium tracking-wide text-[#661028]/50">
                   {active} · {filtered.length} producto{filtered.length !== 1 ? "s" : ""}
                 </p>
@@ -235,6 +197,9 @@ function CatalogoInnerClient({ products }: Props) {
                         <h3 className="font-heading text-base font-bold leading-snug text-[#661028] md:text-lg">
                           {product.name}
                         </h3>
+                        <p className="mt-1.5 font-sans text-[10px] font-medium tracking-[0.15em] uppercase text-[#661028]/35 transition-colors group-hover:text-[#661028]/60">
+                          Ver detalle →
+                        </p>
                       </div>
                     </motion.div>
                   ))}

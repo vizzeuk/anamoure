@@ -24,7 +24,7 @@ const stats = [
     accent: false,
   },
   {
-    number: "78h",
+    number: "48h",
     label: "Anticipación mínima",
     description: "Porque lo extraordinario no se improvisa. Reserva con tiempo.",
     accent: true,

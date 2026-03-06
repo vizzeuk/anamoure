@@ -6,9 +6,9 @@ import { Instagram, Mail, MapPin } from "lucide-react";
 const ease = [0.16, 1, 0.3, 1] as const;
 
 const footerLinks = [
-  { label: "Inicio", href: "#hero" },
+  { label: "Inicio", href: "/" },
   { label: "Experiencia", href: "#experiencia" },
-  { label: "Catálogo", href: "#catalogo" },
+  { label: "Catálogo", href: "/catalogo" },
   { label: "Contacto", href: "#contacto" },
 ];
 

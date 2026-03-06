@@ -1,5 +1,37 @@
 @import "tailwindcss";
 
+/* Fraunces — solo para caracteres con tilde, números, $ y signos matemáticos */
+@font-face {
+  font-family: 'FrauncesLocal';
+  src: url('/fonts/Fraunces_72pt-SemiBold.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  unicode-range:
+    U+00C0-00FF,
+    U+0030-0039,
+    U+0024,
+    U+002B, U+002D,
+    U+00D7, U+00F7,
+    U+003C, U+003D, U+003E,
+    U+0025;
+}
+@font-face {
+  font-family: 'FrauncesLocal';
+  src: url('/fonts/Fraunces_72pt-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range:
+    U+00C0-00FF,
+    U+0030-0039,
+    U+0024,
+    U+002B, U+002D,
+    U+00D7, U+00F7,
+    U+003C, U+003D, U+003E,
+    U+0025;
+}
+
 @theme inline {
   --color-ivory: #EEE4D0;
   --color-primary: #1A1A1A;
@@ -9,8 +41,8 @@
   --color-cream-dark: #E5D8C0;
   --color-brand: #661028;
 
-  --font-heading: var(--font-recoleta);
-  --font-sans: var(--font-recoleta);
+  --font-heading: 'FrauncesLocal', var(--font-recoleta), serif;
+  --font-sans: 'FrauncesLocal', var(--font-recoleta), serif;
 }
 
 html {
@@ -20,7 +52,7 @@ html {
 body {
   background-color: #EEE4D0;
   color: #1A1A1A;
-  font-family: var(--font-recoleta), Georgia, serif;
+  font-family: 'FrauncesLocal', var(--font-recoleta), Georgia, serif;
   overflow-x: hidden;
 }
 

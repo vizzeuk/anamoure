@@ -8,7 +8,7 @@ import { Menu, X } from "lucide-react";
 
 const leftLinks = [
   { label: "Inicio", href: "/" },
-  { label: "La Experiencia", href: "#experiencia" },
+  { label: "La Esencia", href: "#experiencia" },
 ];
 const rightLinks = [
   { label: "Catálogo", href: "/catalogo" },

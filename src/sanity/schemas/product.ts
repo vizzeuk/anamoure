@@ -78,19 +78,22 @@ export const productSchema = defineType({
     }),
     defineField({
       name: "sizes",
-      title: "Tamaños / Porciones",
+      title: "Tamaños / Formatos",
       type: "array",
       of: [
         {
           type: "object",
           name: "size",
           fields: [
-            defineField({ name: "name", title: "Nombre (ej: Individual)", type: "string" }),
-            defineField({ name: "servings", title: "Porciones (ej: 2-4 personas)", type: "string" }),
-            defineField({ name: "price", title: "Precio (ej: $12.000)", type: "string" }),
+            defineField({ name: "name", title: "Nombre (ej: Caja de 6, Docena)", type: "string" }),
+            defineField({
+              name: "price",
+              title: "Precio (solo el número, ej: 12000)",
+              type: "number",
+            }),
           ],
           preview: {
-            select: { title: "name", subtitle: "servings" },
+            select: { title: "name", subtitle: "price" },
           },
         },
       ],

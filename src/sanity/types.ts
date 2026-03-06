@@ -15,7 +15,6 @@ export interface SanityImageAsset {
 
 export interface ProductSize {
   name: string;
-  servings?: string;
   price: number;
 }
 
