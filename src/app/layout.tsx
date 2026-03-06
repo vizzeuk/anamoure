@@ -21,7 +21,7 @@ const fraunces = localFont({
   display: "swap",
 });
 
-const siteUrl = "https://anamoure.com";
+const siteUrl = "https://anamoure.me";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -132,7 +132,7 @@ export default function RootLayout({
     name: "ANAMOURE",
     description:
       "Pastelería artesanal y banquetería de autor en Chile. Pasteles de boda, bocados dulces y aperitivos sofisticados para eventos exclusivos.",
-    url: "https://anamoure.com",
+    url: "https://anamoure.me",
     telephone: "+56941564398",
     priceRange: "$$",
     servesCuisine: ["Pastelería", "Banquetería Dulce", "Banquetería Salada"],

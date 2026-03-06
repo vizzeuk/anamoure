@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { client, isCmsConfigured } from "@/sanity/client";
 
-const siteUrl = "https://anamoure.com";
+const siteUrl = "https://anamoure.me";
 
 async function getProductSlugs(): Promise<string[]> {
   if (!isCmsConfigured) return [];
