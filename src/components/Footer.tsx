@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Instagram, Mail, MapPin } from "lucide-react";
+import Image from "next/image";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -19,7 +20,7 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#661028] px-6 pb-10 pt-24 lg:px-12 lg:pt-32">
+    <footer className="relative bg-[#661028] px-6 pb-10 pt-24 lg:px-12 lg:pt-28">
       {/* Top border */}
       <motion.div
         initial={{ scaleX: 0 }}
@@ -31,7 +32,7 @@ export default function Footer() {
 
       <div className="mx-auto max-w-[1440px]">
         {/* Main footer grid */}
-        <div className="mb-20 grid gap-12 md:grid-cols-3 lg:mb-32">
+        <div className="mb-16 grid gap-12 md:grid-cols-3 lg:mb-24">
           {/* Column 1: Brand */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -39,9 +40,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease }}
           >
-            <span className="font-heading text-base font-bold tracking-[0.2em] uppercase text-[#EEE4D0]">
-              ANAMOURE
-            </span>
+            <Image src="/logos/LOGO-FINAL2.png" alt="Anamoure" width={120} height={48} className="h-10 w-auto object-contain" />
             <p className="mt-4 max-w-xs font-sans text-xs font-light leading-relaxed tracking-wide text-[#EEE4D0]/60">
               Repostería & Banqueteria. Creando momentos
               extraordinarios desde el primer bocado hasta el último sorbo.
@@ -112,9 +111,7 @@ export default function Footer() {
           transition={{ duration: 1, ease }}
           className="mb-12 text-center"
         >
-          <span className="font-heading text-[clamp(3rem,10vw,8rem)] font-bold leading-none tracking-[0.15em] text-[#EEE4D0]">
-            ANAMOURE
-          </span>
+          <Image src="/logos/LOGO-FINAL2.png" alt="Anamoure" width={600} height={200} className="mx-auto w-[clamp(200px,50vw,600px)] h-auto object-contain" />
         </motion.div>
 
         {/* Bottom bar */}

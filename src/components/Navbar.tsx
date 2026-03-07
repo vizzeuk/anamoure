@@ -60,7 +60,7 @@ export default function Navbar() {
           <div className="absolute left-1/2 -translate-x-1/2 md:static md:left-auto md:translate-x-0 flex justify-center">
             <a href="/">
               <Image
-                src="/logos/LOGO-ANA.png"
+                src="/logos/LOGO-FINAL2.png"
                 alt="Anamoure"
                 width={90}
                 height={36}

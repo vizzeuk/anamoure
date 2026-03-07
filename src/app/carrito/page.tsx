@@ -288,7 +288,7 @@ export default function CarritoPage() {
                   Enviar pedido por WhatsApp
                 </a>
                 <p className="mt-4 text-center font-sans text-xs font-medium leading-relaxed text-[#661028]/45">
-                  Se abrirá WhatsApp con tu pedido formateado listo para enviar
+                  Se abrirá WhatsApp con tu pedido listo para enviar
                 </p>
               </motion.div>
             </div>
