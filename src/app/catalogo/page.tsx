@@ -1,3 +1,5 @@
+export const revalidate = 60;
+
 import { Suspense } from "react";
 import { client, isCmsConfigured } from "@/sanity/client";
 import { allProductsQuery } from "@/sanity/queries";

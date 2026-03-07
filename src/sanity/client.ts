@@ -13,5 +13,5 @@ export const client = createClient({
   projectId: isCmsConfigured ? projectId : "placeholder",
   dataset,
   apiVersion,
-  useCdn: true,
+  useCdn: false,
 });
