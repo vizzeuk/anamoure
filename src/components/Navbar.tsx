@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-
+import Image from "next/image";
 
 
 const leftLinks = [
@@ -26,10 +26,10 @@ export default function Navbar() {
   }, []);
 
   const navBg = scrolled
-    ? "bg-[#F5EDE0]/92 shadow-sm ring-1 ring-black/[0.04] backdrop-blur-xl"
+    ? "bg-[#7A1230]/95 shadow-sm backdrop-blur-xl"
     : "bg-[#661028]";
-  const textColor = scrolled ? "text-primary" : "text-[#EEE4D0]";
-  const textMuted = scrolled ? "text-primary/50" : "text-[#EEE4D0]/60";
+  const textColor = "text-[#EEE4D0]";
+  const textMuted = "text-[#EEE4D0]/70";
 
   return (
     <>
@@ -56,12 +56,17 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Center: Logo — absolute centered on mobile, grid-centered on desktop */}
+          {/* Center: Logo */}
           <div className="absolute left-1/2 -translate-x-1/2 md:static md:left-auto md:translate-x-0 flex justify-center">
             <a href="/">
-              <span className={`font-heading text-sm font-medium tracking-[0.2em] uppercase transition-colors duration-700 ${textColor}`}>
-                Anamoure
-              </span>
+              <Image
+                src="/logos/LOGO-ANA.png"
+                alt="Anamoure"
+                width={90}
+                height={36}
+                className="h-8 w-auto object-contain"
+                priority
+              />
             </a>
           </div>
 
